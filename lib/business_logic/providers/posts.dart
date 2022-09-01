@@ -1,0 +1,1 @@
+class Posts extends ChangeNotifier {}

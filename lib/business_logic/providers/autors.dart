@@ -1,0 +1,1 @@
+class Autor extends ChangeNotifier {}
