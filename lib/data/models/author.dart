@@ -1,7 +1,7 @@
 import './address.dart';
 import './geo_location.dart';
 
-class User {
+class Author {
   final int id;
   final String name;
   final String username;
@@ -9,7 +9,7 @@ class User {
   final Address address;
   final GeoLocation geo;
 
-  const User({
+  const Author({
     required this.id,
     required this.name,
     required this.username,
@@ -18,8 +18,8 @@ class User {
     required this.geo,
   });
 
-  factory User.fromJson(json) {
-    return User(
+  factory Author.fromJson(json) {
+    return Author(
       id: json['id'],
       name: json['name'],
       username: json['username'],

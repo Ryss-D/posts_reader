@@ -23,7 +23,7 @@ class PostsAPI {
     } catch (error) {}
   }
 
-  Future getRawUsers() async {
+  Future getRawAuthors() async {
     final url = Uri.parse('https://jsonplaceholder.typicode.com/users');
     try {
       final response = await http.get(url);

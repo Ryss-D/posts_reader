@@ -54,23 +54,26 @@ class _PostsListScreenState extends State<PostsListScreen> {
                     //TODO: Error handling
                   } else {
                     return RefreshIndicator(
-                      onRefresh: () => Provider.of<Posts>(context).fetchPosts(),
-                      child: Column(
+                      onRefresh: () =>
+                          //TODO create a refresh methods, this dont work
+                          Provider.of<Posts>(context, listen: false)
+                              .fetchPosts(),
+                      child: Stack(
                         children: [
-                          Container(
-                            height: 80,
-                            child: Consumer<Posts>(
-                              builder: (ctx, postsData, child) =>
-                                  ListView.builder(
-                                      itemBuilder: (context, index) =>
-                                          PostsListItem(
-                                              description:
-                                                  postsData.posts[index].title),
-                                      itemCount: postsData.posts.length),
-                            ),
+                          Consumer<Posts>(
+                            builder: (ctx, postsData, child) =>
+                                ListView.builder(
+                                    itemBuilder: (context, index) =>
+                                        PostsListItem(
+                                            description:
+                                                postsData.posts[index].title),
+                                    itemCount: postsData.posts.length),
                           ),
-                          PostsEraser(
-                            deleteFuction: () {},
+                          Align(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            child: PostsEraser(
+                              deleteFuction: () {},
+                            ),
                           )
                         ],
                       ),

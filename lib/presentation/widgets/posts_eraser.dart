@@ -26,11 +26,13 @@ class PostsEraser extends StatelessWidget {
             style: ElevatedButton.styleFrom(primary: Colors.red),
             child: Container(
               color: Colors.red,
+              height: 60,
               width: double.infinity,
               child: Center(
                 child: Text(
                   'Delete all',
-                  style: Theme.of(context).textTheme.button,
+                  //style: Theme.of(context).textTheme.button,
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),

@@ -71,12 +71,15 @@ class PostsListItem extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(8),
           child: ListTile(
+            minLeadingWidth: 5,
             leading: isFavorite
                 ? Icon(
                     Icons.star,
                     color: Colors.amber,
                   )
-                : Icon(Icons.outlined_flag),
+                : SizedBox(
+                    width: 10,
+                  ),
             title: Text(description),
             trailing: Icon(Icons.navigate_next),
           ),
