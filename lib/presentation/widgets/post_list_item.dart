@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:posts_reader/presentation/screens/post_detail_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../../business_logic/providers/posts.dart';
 
 //import '../providers/cart.dart';
 
 class PostsListItem extends StatelessWidget {
-  final String description;
+  final int postId;
+  final String title;
   final bool isFavorite;
 
   PostsListItem({
-    required this.description,
+    required this.postId,
+    required this.title,
     this.isFavorite = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ValueKey(description),
+      key: ValueKey(postId),
       background: Container(
         color: Theme.of(context).colorScheme.error,
         child: Icon(
@@ -61,7 +66,7 @@ class PostsListItem extends StatelessWidget {
       // we can add diferect tirections and with direction argument then
       // select what to do
       onDismissed: (direction) {
-        //Provider.of<Cart>(context, listen: false).removeItem(productId);
+        Provider.of<Posts>(context, listen: false).removePost(postId);
       },
       child: Card(
         margin: EdgeInsets.symmetric(
@@ -80,8 +85,14 @@ class PostsListItem extends StatelessWidget {
                 : SizedBox(
                     width: 10,
                   ),
-            title: Text(description),
-            trailing: Icon(Icons.navigate_next),
+            title: Text(title),
+            trailing: IconButton(
+              icon: Icon(Icons.navigate_next),
+              onPressed: () => Navigator.of(context).pushNamed(
+                PostDetailScreen.routeName,
+                arguments: postId,
+              ),
+            ),
           ),
         ),
       ),

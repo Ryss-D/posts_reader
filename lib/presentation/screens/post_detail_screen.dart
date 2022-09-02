@@ -7,27 +7,30 @@ import 'package:provider/provider.dart';
 import '../widgets/post_list_item.dart';
 import '../../business_logic/providers/posts.dart';
 
-class PostDetailScreen extends StatefulWidget {
+class PostDetailScreen extends StatelessWidget {
   static const routeName = '/posts_list';
 
   @override
-  _PostDetailScreenState createState() => _PostDetailScreenState();
-}
-
-class _PostDetailScreenState extends State<PostDetailScreen> {
-  @override
   Widget build(BuildContext context) {
+    final postId = ModalRoute.of(context)?.settings.arguments as int;
+    final post = Provider.of<Posts>(context, listen: false).findById(postId);
 //     //final ordersData = Provider.of<Orders>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Title'),
+        title: Text(post.title),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.star),
+            onPressed: () {
+              Provider.of<Posts>(context, listen: false).toogleFavorite(postId);
+            },
+            //TODO fix
+            icon: post.isFavorite ? Icon(Icons.star) : Icon(Icons.star_border),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<Posts>(context, listen: false).removePost(postId);
+              Navigator.of(context).pop();
+            },
             icon: Icon(Icons.delete),
           ),
         ],
@@ -35,8 +38,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       body: Column(
         children: [
           PostInformation(
-            title: 'Post',
-            description: 'Description',
+            title: 'Description',
+            description: post.body,
           ),
           AuthorInformation(
             name: 'name',

@@ -65,7 +65,11 @@ class _PostsListScreenState extends State<PostsListScreen> {
                                 ListView.builder(
                                     itemBuilder: (context, index) =>
                                         PostsListItem(
-                                            description:
+                                            postId: postsData.posts[index].id,
+                                            isFavorite:
+                                                postsData.posts[index]
+                                                    .isFavorite,
+                                            title:
                                                 postsData.posts[index].title),
                                     itemCount: postsData.posts.length),
                           ),
@@ -84,7 +88,18 @@ class _PostsListScreenState extends State<PostsListScreen> {
                 }
               },
             ),
-            Container(),
+            Consumer<Posts>(
+              builder: (ctx, postsData, child) =>
+                  postsData.favoritePosts.length == 0
+                      ? Center(child: Text('Not favorite posts added yet!'))
+                      : ListView.builder(
+                          itemBuilder: (context, index) => PostsListItem(
+                              postId: postsData.favoritePosts[index].id,
+                              isFavorite:
+                                  postsData.favoritePosts[index].isFavorite,
+                              title: postsData.favoritePosts[index].title),
+                          itemCount: postsData.favoritePosts.length),
+            ),
           ],
         ),
       ),

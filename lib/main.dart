@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'data/models/post.dart';
-import 'presentation/screens/post_detail.dart';
+import 'presentation/screens/post_detail_screen.dart';
 import 'presentation/screens/posts_list_screen.dart';
 import './business_logic/providers/posts.dart';
 import './business_logic/providers/authors.dart';
