@@ -3,6 +3,7 @@ import 'package:posts_reader/presentation/widgets/posts_eraser.dart';
 import 'package:provider/provider.dart';
 
 import '../../business_logic/providers/authors.dart';
+import '../../business_logic/providers/comments.dart';
 import '../../business_logic/providers/posts.dart';
 import '../../data/models/author.dart';
 import '../../data/models/post.dart';
@@ -23,6 +24,7 @@ class _PostsListScreenState extends State<PostsListScreen> {
   void initState() {
     _postsFuture = Provider.of<Posts>(context, listen: false).fetchPosts();
     Provider.of<Authors>(context, listen: false).fetchAuthors();
+    Provider.of<Comments>(context, listen: false).fetchComments();
     super.initState();
   }
 

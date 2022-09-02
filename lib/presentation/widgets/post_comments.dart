@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../business_logic/providers/comments.dart';
 
 class PostsComments extends StatelessWidget {
-  final List<String> comments;
-  PostsComments({
-    required this.comments,
-  });
+  final int postId;
+  PostsComments({required this.postId});
 
   @override
   Widget build(BuildContext context) {
+    final comments =
+        Provider.of<Comments>(context, listen: false).findByPostId(postId);
     return Container(
       height: 80,
       child: Column(
@@ -24,7 +27,7 @@ class PostsComments extends StatelessWidget {
                 return Card(
                   margin: const EdgeInsets.only(bottom: 1),
                   child: Text(
-                    comments[index],
+                    comments[index].body,
                   ),
                 );
               },
