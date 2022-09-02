@@ -13,8 +13,10 @@ class Posts with ChangeNotifier {
   Posts(this._posts);
 
   Future<List<Post>> fetchPosts() async {
-    print('call;led');
-    return _posts = await repository.getPosts();
+    print('callled');
+    _posts = await repository.getPosts();
+    notifyListeners();
+    return _posts;
     //return _posts = <Post>[
     //Post(userId: 1, id: 1, title: 'Title', body: 'body', isFavorite: true),
     //];
