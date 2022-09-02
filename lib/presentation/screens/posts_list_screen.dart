@@ -72,7 +72,9 @@ class _PostsListScreenState extends State<PostsListScreen> {
                           Align(
                             alignment: AlignmentDirectional.bottomEnd,
                             child: PostsEraser(
-                              deleteFuction: () {},
+                              deleteFuction: () =>
+                                  Provider.of<Posts>(context, listen: false)
+                                      .removeAllPosts(),
                             ),
                           )
                         ],

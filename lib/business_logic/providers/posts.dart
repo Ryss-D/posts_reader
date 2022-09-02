@@ -13,6 +13,7 @@ class Posts with ChangeNotifier {
   Posts(this._posts);
 
   Future<List<Post>> fetchPosts() async {
+    print('call;led');
     return _posts = await repository.getPosts();
     //return _posts = <Post>[
     //Post(userId: 1, id: 1, title: 'Title', body: 'body', isFavorite: true),
@@ -20,5 +21,8 @@ class Posts with ChangeNotifier {
   }
 
   Future<void> removePost() async {}
-  Future<void> removeAllPosts() async {}
+  Future<void> removeAllPosts() async {
+    _posts = [];
+    notifyListeners();
+  }
 }
