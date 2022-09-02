@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PostInformation extends StatelessWidget {
   final String title;
   final String description;
-  PostInformation({required this.title, required this.description});
+  const PostInformation({required this.title, required this.description});
   @override
   Widget build(BuildContext context) {
     return Padding(

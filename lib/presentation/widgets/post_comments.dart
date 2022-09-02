@@ -5,7 +5,7 @@ import '../../business_logic/providers/comments.dart';
 
 class PostsComments extends StatelessWidget {
   final int postId;
-  PostsComments({required this.postId});
+  const PostsComments({required this.postId});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class PostsComments extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(left: 8.0),
+            padding: const EdgeInsets.only(left: 8.0),
             width: double.infinity,
             color: Colors.grey[350],
             child: Text(
@@ -25,7 +25,7 @@ class PostsComments extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             //height: 200,
             child: ListView.builder(
               shrinkWrap: true,

@@ -11,7 +11,7 @@ class PostsListItem extends StatelessWidget {
   final String title;
   final bool isFavorite;
 
-  PostsListItem({
+  const PostsListItem({
     required this.postId,
     required this.title,
     this.isFavorite = false,
@@ -23,16 +23,16 @@ class PostsListItem extends StatelessWidget {
       key: ValueKey(postId),
       background: Container(
         color: Theme.of(context).colorScheme.error,
-        child: Icon(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 4,
+        ),
+        child: const Icon(
           Icons.delete,
           color: Colors.white,
           size: 40,
-        ),
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: 20),
-        margin: EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 4,
         ),
       ),
       direction: DismissDirection.endToStart,
@@ -43,11 +43,11 @@ class PostsListItem extends StatelessWidget {
         return showDialog(
             context: context,
             builder: (context) => AlertDialog(
-                  title: Text('Are you sure?'),
-                  content: Text('Do  you want to remove this post?'),
+                  title: const Text('Are you sure?'),
+                  content: const Text('Do  you want to remove this post?'),
                   actions: [
                     TextButton(
-                      child: Text('No'),
+                      child: const Text('No'),
                       onPressed: () {
                         //we use it becasuse showDialog close the future when its closed
                         //passing the value via navigator pop
@@ -55,7 +55,7 @@ class PostsListItem extends StatelessWidget {
                       },
                     ),
                     TextButton(
-                      child: Text('Yes'),
+                      child: const Text('Yes'),
                       onPressed: () {
                         Navigator.of(context).pop(true);
                       },
@@ -69,25 +69,25 @@ class PostsListItem extends StatelessWidget {
         Provider.of<Posts>(context, listen: false).removePost(postId);
       },
       child: Card(
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: 4,
           horizontal: 5,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: ListTile(
             minLeadingWidth: 5,
             leading: isFavorite
-                ? Icon(
+                ? const Icon(
                     Icons.star,
                     color: Colors.amber,
                   )
-                : SizedBox(
+                : const SizedBox(
                     width: 10,
                   ),
             title: Text(title),
             trailing: IconButton(
-              icon: Icon(Icons.navigate_next),
+              icon: const Icon(Icons.navigate_next),
               onPressed: () => Navigator.of(context).pushNamed(
                 PostDetailScreen.routeName,
                 arguments: postId,

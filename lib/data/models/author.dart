@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:posts_reader/data/models/company.dart';
 
 import './address.dart';

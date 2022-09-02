@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../business_logic/providers/authors.dart';
 import '../../business_logic/providers/comments.dart';
 import '../../business_logic/providers/posts.dart';
-import '../../data/models/author.dart';
 import '../../data/models/post.dart';
 import '../widgets/post_list_item.dart';
 
