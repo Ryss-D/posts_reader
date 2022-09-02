@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../data/models/post.dart';
 
@@ -12,7 +11,9 @@ class Posts with ChangeNotifier {
   Posts(this._posts);
 
   Future<List<Post>> fetchPosts() async {
-    return <Post>[];
+    return _posts = <Post>[
+      Post(userId: 1, id: 1, title: 'Title', body: 'body', isFavorite: true),
+    ];
   }
 
   Future<void> removePost() async {}

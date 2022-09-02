@@ -66,12 +66,17 @@ class PostsListItem extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.symmetric(
           vertical: 4,
-          horizontal: 15,
+          horizontal: 5,
         ),
         child: Padding(
           padding: EdgeInsets.all(8),
           child: ListTile(
-            leading: isFavorite ? Icon(Icons.star) : SizedBox(),
+            leading: isFavorite
+                ? Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  )
+                : Icon(Icons.outlined_flag),
             title: Text(description),
             trailing: Icon(Icons.navigate_next),
           ),

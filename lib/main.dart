@@ -24,10 +24,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: PostsListScreen(),
+        //home: PostsListScreen(),
+        home: PostDetailScreen(),
         routes: {
           PostsListScreen.routeName: (context) => PostsListScreen(),
-          //PostDetailScreen.routeName: (context) => PostDetailScreen(),
+          PostDetailScreen.routeName: (context) => PostDetailScreen(),
         },
       ),
     );

@@ -20,33 +20,51 @@ class _PostsListScreenState extends State<PostsListScreen> {
     super.initState();
   }
 
-  @override
   Widget build(BuildContext context) {
     //final ordersData = Provider.of<Orders>(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Posts'),
-      ),
-      body: FutureBuilder(
-        future: _postsFuture,
-        builder: (context, dataSnapshot) {
-          // dataSnapshot is the current state of future
-          if (dataSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            if (dataSnapshot.error == null) {
-              return Center(child: Text('An error occurred'));
-              //TODO: Error handling
-            } else {
-              return Consumer<Posts>(
-                builder: (ctx, postsData, child) => ListView.builder(
-                    itemBuilder: (context, index) => PostsListItem(
-                        description: postsData.posts[index].title),
-                    itemCount: postsData.posts.length),
-              );
-            }
-          }
-        },
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Posts'),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                text: 'All',
+              ),
+              Tab(
+                text: 'Favorites',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            FutureBuilder(
+              future: _postsFuture,
+              builder: (context, dataSnapshot) {
+                // dataSnapshot is the current state of future
+                if (dataSnapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  if (dataSnapshot.error != null) {
+                    return Center(child: Text('An error occurred'));
+                    //TODO: Error handling
+                  } else {
+                    return Consumer<Posts>(
+                      builder: (ctx, postsData, child) => ListView.builder(
+                          itemBuilder: (context, index) => PostsListItem(
+                              description: postsData.posts[index].title),
+                          itemCount: postsData.posts.length),
+                    );
+                  }
+                }
+              },
+            ),
+            Container(),
+          ],
+        ),
       ),
     );
   }
