@@ -8,10 +8,10 @@ For the development of the project i used a Clean architecture adaptation to flu
 
 The external packages used for the application are: 
 
-Http -> To make easy http request and fetch data from the web. 
-Path -> To make String based cross-platform path manipulation. 
-Provider -> To make easier the state managemente solucion 
-Sqflite -> To use lightwieigh sqlDB as local persistence solution
+Http -> To make easy http request and fetch data from the web.\
+Path -> To make String based cross-platform path manipulation.\
+Provider -> To make easier the state managemente solucion.\
+Sqflite -> To use lightwieigh sqlDB as local persistence solution.\
 
 With the following steps the project will be ready to go:
 
