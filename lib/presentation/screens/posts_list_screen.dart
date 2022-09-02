@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posts_reader/presentation/widgets/posts_eraser.dart';
 import 'package:provider/provider.dart';
 
 import '../../business_logic/providers/posts.dart';
@@ -52,11 +53,27 @@ class _PostsListScreenState extends State<PostsListScreen> {
                     return Center(child: Text('An error occurred'));
                     //TODO: Error handling
                   } else {
-                    return Consumer<Posts>(
-                      builder: (ctx, postsData, child) => ListView.builder(
-                          itemBuilder: (context, index) => PostsListItem(
-                              description: postsData.posts[index].title),
-                          itemCount: postsData.posts.length),
+                    return RefreshIndicator(
+                      onRefresh: () => Provider.of<Posts>(context).fetchPosts(),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            child: Consumer<Posts>(
+                              builder: (ctx, postsData, child) =>
+                                  ListView.builder(
+                                      itemBuilder: (context, index) =>
+                                          PostsListItem(
+                                              description:
+                                                  postsData.posts[index].title),
+                                      itemCount: postsData.posts.length),
+                            ),
+                          ),
+                          PostsEraser(
+                            deleteFuction: () {},
+                          )
+                        ],
+                      ),
                     );
                   }
                 }

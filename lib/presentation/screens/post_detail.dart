@@ -21,6 +21,16 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Title'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.star),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.delete),
+          ),
+        ],
       ),
       body: Column(
         children: [

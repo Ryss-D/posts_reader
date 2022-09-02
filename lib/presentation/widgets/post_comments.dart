@@ -18,7 +18,7 @@ class PostsComments extends StatelessWidget {
             child: Text('COMMENTS'),
           ),
           Container(
-            height: 30,
+            height: 60,
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
