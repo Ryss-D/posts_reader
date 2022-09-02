@@ -25,7 +25,7 @@ class Posts with ChangeNotifier {
   }
 
   Future<void> removeAllPosts() async {
-    _posts = [];
+    _posts = _posts.where((post) => post.isFavorite == true).toList();
     notifyListeners();
   }
 
