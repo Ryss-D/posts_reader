@@ -11,24 +11,29 @@ class PostsComments extends StatelessWidget {
   Widget build(BuildContext context) {
     final comments =
         Provider.of<Comments>(context, listen: false).findByPostId(postId);
-    return Container(
-      height: 80,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
       child: Column(
         children: [
           Container(
+            padding: EdgeInsets.only(left: 8.0),
             width: double.infinity,
             color: Colors.grey[350],
-            child: Text('COMMENTS'),
+            child: Text(
+              'COMMENTS',
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ),
           Container(
-            height: 60,
+            padding: EdgeInsets.all(8.0),
+            //height: 200,
             child: ListView.builder(
+              shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Card(
                   margin: const EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    comments[index].body,
-                  ),
+                  child: Text(comments[index].body,
+                      style: Theme.of(context).textTheme.headline3),
                 );
               },
               itemCount: comments.length,

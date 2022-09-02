@@ -45,19 +45,21 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          PostInformation(
-            title: 'Description',
-            description: post.body,
-          ),
-          AuthorInformation(
-            userId: post.userId,
-          ),
-          PostsComments(
-            postId: post.id,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PostInformation(
+              title: 'Description',
+              description: post.body,
+            ),
+            AuthorInformation(
+              userId: post.userId,
+            ),
+            PostsComments(
+              postId: post.id,
+            ),
+          ],
+        ),
       ),
     );
   }

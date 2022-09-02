@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
         title: 'Posts reader',
         theme: ThemeData(
           primarySwatch: Colors.green,
+          textTheme: TextTheme(
+              headline1: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              headline3: TextStyle(fontSize: 18)),
         ),
         home: PostsListScreen(),
         //home: PostDetailScreen(),

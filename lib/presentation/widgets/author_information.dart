@@ -16,12 +16,19 @@ class AuthorInformation extends StatelessWidget {
       width: double.infinity,
       color: Colors.grey[100],
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('USER'),
-          Text(author.name),
-          Text(author.email),
-          Text(author.phone),
-          Text(author.website),
+          Text(
+            'USER',
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          Text(
+            author.name,
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          Text(author.email, style: Theme.of(context).textTheme.headline3),
+          Text(author.phone, style: Theme.of(context).textTheme.headline3),
+          Text(author.website, style: Theme.of(context).textTheme.headline3),
         ],
       ),
     );

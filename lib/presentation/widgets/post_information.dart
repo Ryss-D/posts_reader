@@ -6,15 +6,24 @@ class PostInformation extends StatelessWidget {
   PostInformation({required this.title, required this.description});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      width: double.infinity,
-      color: Colors.grey[100],
-      child: Column(
-        children: [
-          Text(title),
-          Text(description),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: double.infinity,
+        color: Colors.grey[100],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            Text(
+              description,
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          ],
+        ),
       ),
     );
   }
