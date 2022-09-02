@@ -22,7 +22,7 @@ class PostsComments extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
-                  margin: EdgeInsets.only(bottom: 1),
+                  margin: const EdgeInsets.only(bottom: 1),
                   child: Text(
                     comments[index],
                   ),

@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:posts_reader/data/models/company.dart';
+
 import './address.dart';
 import './geo_location.dart';
 
@@ -8,6 +12,9 @@ class Author {
   final String email;
   final Address address;
   final GeoLocation geo;
+  final String phone;
+  final String website;
+  final Company company;
 
   const Author({
     required this.id,
@@ -16,6 +23,9 @@ class Author {
     required this.email,
     required this.address,
     required this.geo,
+    required this.phone,
+    required this.website,
+    required this.company,
   });
 
   factory Author.fromJson(json) {
@@ -31,9 +41,15 @@ class Author {
         zipcode: json['address']['zipcode'],
       ),
       geo: GeoLocation(
-        lat: json['geo']['lat'],
-        lng: json['geo']['lng'],
+        lat: json['address']['geo']['lat'],
+        lng: json['address']['geo']['lng'],
       ),
+      phone: json['phone'],
+      website: json['website'],
+      company: Company(
+          name: json['company']['name'],
+          catchPhrase: json['company']['catchPhrase'],
+          bs: json['company']['bs']),
     );
   }
 }

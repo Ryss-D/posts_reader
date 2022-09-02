@@ -52,10 +52,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             description: post.body,
           ),
           AuthorInformation(
-            name: 'name',
-            email: 'email',
-            phone: 'phone',
-            website: 'website',
+            userId: post.userId,
           ),
           PostsComments(
             comments: [

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:posts_reader/presentation/widgets/posts_eraser.dart';
 import 'package:provider/provider.dart';
 
+import '../../business_logic/providers/authors.dart';
 import '../../business_logic/providers/posts.dart';
+import '../../data/models/author.dart';
 import '../../data/models/post.dart';
 import '../widgets/post_list_item.dart';
 
@@ -20,6 +22,7 @@ class _PostsListScreenState extends State<PostsListScreen> {
   @override
   void initState() {
     _postsFuture = Provider.of<Posts>(context, listen: false).fetchPosts();
+    Provider.of<Authors>(context, listen: false).fetchAuthors();
     super.initState();
   }
 

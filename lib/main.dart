@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Posts(<Post>[])),
+        ChangeNotifierProvider(create: (context) => Posts()),
         ChangeNotifierProvider(create: (context) => Authors()),
         ChangeNotifierProvider(create: (context) => Comments()),
       ],

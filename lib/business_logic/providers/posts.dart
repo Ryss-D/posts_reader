@@ -10,15 +10,10 @@ class Posts with ChangeNotifier {
     return [..._posts];
   }
 
-  Posts(this._posts);
-
   Future<List<Post>> fetchPosts() async {
     _posts = await repository.getPosts();
     notifyListeners();
     return _posts;
-    //return _posts = <Post>[
-    //Post(userId: 1, id: 1, title: 'Title', body: 'body', isFavorite: true),
-    //];
   }
 
   List<Post> get favoritePosts {
