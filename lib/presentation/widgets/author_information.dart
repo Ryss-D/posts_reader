@@ -6,7 +6,7 @@ class AuthorInformation extends StatelessWidget {
   final String phone;
   final String website;
 
-  AuthorInformation({
+  const AuthorInformation({
     required this.name,
     required this.email,
     required this.phone,

@@ -9,6 +9,8 @@ import '../widgets/post_list_item.dart';
 class PostsListScreen extends StatefulWidget {
   static const routeName = '/post_detail';
 
+  const PostsListScreen({Key? key}) : super(key: key);
+
   @override
   _PostsListScreenState createState() => _PostsListScreenState();
 }
@@ -21,6 +23,7 @@ class _PostsListScreenState extends State<PostsListScreen> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     //final ordersData = Provider.of<Orders>(context);
     return DefaultTabController(
@@ -47,15 +50,13 @@ class _PostsListScreenState extends State<PostsListScreen> {
               builder: (context, dataSnapshot) {
                 // dataSnapshot is the current state of future
                 if (dataSnapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else {
                   if (dataSnapshot.error != null) {
-                    return Center(child: Text('An error occurred'));
-                    //TODO: Error handling
+                    return const Center(child: Text('An error occurred'));
                   } else {
                     return RefreshIndicator(
                       onRefresh: () =>
-                          //TODO create a refresh methods, this dont work
                           Provider.of<Posts>(context, listen: false)
                               .fetchPosts(),
                       child: Stack(
@@ -89,16 +90,15 @@ class _PostsListScreenState extends State<PostsListScreen> {
               },
             ),
             Consumer<Posts>(
-              builder: (ctx, postsData, child) =>
-                  postsData.favoritePosts.length == 0
-                      ? Center(child: Text('Not favorite posts added yet!'))
-                      : ListView.builder(
-                          itemBuilder: (context, index) => PostsListItem(
-                              postId: postsData.favoritePosts[index].id,
-                              isFavorite:
-                                  postsData.favoritePosts[index].isFavorite,
-                              title: postsData.favoritePosts[index].title),
-                          itemCount: postsData.favoritePosts.length),
+              builder: (ctx, postsData, child) => postsData
+                      .favoritePosts.isEmpty
+                  ? const Center(child: Text('Not favorite posts added yet!'))
+                  : ListView.builder(
+                      itemBuilder: (context, index) => PostsListItem(
+                          postId: postsData.favoritePosts[index].id,
+                          isFavorite: postsData.favoritePosts[index].isFavorite,
+                          title: postsData.favoritePosts[index].title),
+                      itemCount: postsData.favoritePosts.length),
             ),
           ],
         ),

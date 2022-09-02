@@ -13,7 +13,6 @@ class Posts with ChangeNotifier {
   Posts(this._posts);
 
   Future<List<Post>> fetchPosts() async {
-    print('callled');
     _posts = await repository.getPosts();
     notifyListeners();
     return _posts;

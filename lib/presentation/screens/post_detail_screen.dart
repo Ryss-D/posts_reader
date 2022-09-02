@@ -4,17 +4,23 @@ import 'package:posts_reader/presentation/widgets/post_comments.dart';
 import 'package:posts_reader/presentation/widgets/post_information.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/post_list_item.dart';
 import '../../business_logic/providers/posts.dart';
 
-class PostDetailScreen extends StatelessWidget {
+class PostDetailScreen extends StatefulWidget {
   static const routeName = '/posts_list';
 
+  const PostDetailScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PostDetailScreen> createState() => _PostDetailScreenState();
+}
+
+class _PostDetailScreenState extends State<PostDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final postId = ModalRoute.of(context)?.settings.arguments as int;
     final post = Provider.of<Posts>(context, listen: false).findById(postId);
-//     //final ordersData = Provider.of<Orders>(context);
+    bool starred = post.isFavorite;
     return Scaffold(
       appBar: AppBar(
         title: Text(post.title),
@@ -22,16 +28,20 @@ class PostDetailScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Provider.of<Posts>(context, listen: false).toogleFavorite(postId);
+              setState(() {
+                starred = !starred;
+              });
             },
-            //TODO fix
-            icon: post.isFavorite ? Icon(Icons.star) : Icon(Icons.star_border),
+            icon: starred
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border),
           ),
           IconButton(
             onPressed: () {
               Provider.of<Posts>(context, listen: false).removePost(postId);
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),
@@ -66,24 +76,3 @@ class PostDetailScreen extends StatelessWidget {
     );
   }
 }
-        // body: FutureBuilder(
-            // future: _postsFuture,
-            // builder: (context, dataSnapshot) {
-//               // dataSnapshot is the current state of future
-//               if (dataSnapshot.connectionState == ConnectionState.waiting) {
-//                 return Center(child: CircularProgressIndicator());
-//               } else {
-//                 if (dataSnapshot.error == null) {
-//                   return Center(child: Text('An error occurred'));
-//                   //TODO: Error handling
-//                 } else {
-//                   return Consumer<Posts>(
-//                     builder: (ctx, postsData, child) => ListView.builder(
-//                         itemBuilder: (context, index) =>
-//                             PostListItem(postsData.posts[index]),
-//                         itemCount: postsData.posts.length),
-//                   );
-//                 }
-//               }
-//             }));
-// }
