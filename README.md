@@ -13,6 +13,11 @@ Path -> To make String based cross-platform path manipulation.\
 Provider -> To make easier the state managemente solucion.\
 Sqflite -> To use lightwieigh sqlDB as local persistence solution.
 
+For future iterations:
+
+Mockito -> To ensure agile tests.\
+GetIt -> To implement dependencies injection.\
+
 With the following steps the project will be ready to go:
 
 Clone the repository:
